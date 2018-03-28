@@ -1,3 +1,3 @@
-this.axios.get --> axios.get
-filterByMake() --> this.filterByMake()
+144 : updatePrice() --> this.updatePrice()
+32  : this.axios.get --> axios.get
 this.refs.madle --> this.refs.model
