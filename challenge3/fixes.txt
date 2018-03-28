@@ -1,1 +1,7 @@
 Bugs will be found in vehicle code only.  Nothing related to buyers
+149 : onclick() --> onClick()
+187 : onClick={this.resetData('buyers')} --> onClick={() => this.resetData('buyers')}
+194 : onClick={() => this.getVehicles}> --> onClick={() => this.getVehicles()}
+34  : this.setState({ 'vehiclesToDisplay': results }) --> this.setState({ 'vehiclesToDisplay': results.data })
+80  : axios.post('https://joes-autos.herokuapp.com/api/vechicles', newCar) --> axios.post('https://joes-autos.herokuapp.com/api/vehicles', newCar)
+
