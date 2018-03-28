@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   getVehicles() {
-    this.axios.get('https://joes-autos.herokuapp.com/api/vehicles').then(results => {
+    axios.get('https://joes-autos.herokuapp.com/api/vehicles').then(results => {
       toast.success("Successfully got Vehicles.");
       this.setState({ 'vehiclesToDisplay': results.data });
     }).catch(() => toast.error("Failed at fetching Vehicles"));
@@ -52,6 +52,11 @@ class App extends Component {
 
     // axios (GET)
     // setState with response -> vehiclesToDisplay
+    axios.get('https://joes-autos.herokuapp.com/api/vehicles').then(results => {
+      toast.success(`Successfully filtered by ${make}`);
+      let filteredVehicles = results.data.filter(vehicle => vehicle.make === make);
+      this.setState({ vehiclesToDisplay: filteredVehicles });
+    }).catch(() => toast.error("Test"));
   }
 
   filterByColor() {
@@ -71,7 +76,7 @@ class App extends Component {
   addCar() {
     let newCar = {
       make: this.refs.make.value,
-      model: this.refs.modle.value,
+      model: this.refs.model.value,
       color: this.refs.color.value,
       year: this.refs.year.value,
       price: this.refs.price.value
@@ -141,7 +146,7 @@ class App extends Component {
           </button>
 
           <button className='btn btn-sp'
-            onClick={() => updatePrice('down', v.id)}>
+            onClick={() => this.updatePrice('down', v.id)}>
             Decrease Price
           </button>
 
@@ -195,9 +200,9 @@ class App extends Component {
             Get All Vehicles
           </button>
 
-          <select onChange={this.filterByMake}
+          <select className='btn-sp'
+            onChange={this.filterByMake}
             ref='selectedMake'
-            className='btn-sp'
             value="">
             <option value="" disabled>Filter by make</option>
             <option value="Suzuki">Suzuki</option>
@@ -211,9 +216,9 @@ class App extends Component {
             <option value="Chrysler">Chrysler</option>
           </select>
 
-          <select ref='selectedColor'
+          <select className='btn-sp'
             onChange={this.filterByColor}
-            className='btn-sp'
+            ref='selectedColor'
             value="">
             <option value="" disabled>Filter by color</option>
             <option value="red">Red</option>
